@@ -7,53 +7,67 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<Map> _myJson = [{ "ind": "0"    ,   "title": "Safe Scrum Master(1.1)"  ,   "subtitle": "Keynote Speaker 1"  ,   "date": "+93"},
+    { "ind": "1"    ,   "title": "Safe Scrum Master(1.2)"  ,   "subtitle": "Keynote Speaker 2"  ,   "date": "+93"},
+    { "ind": "2"    ,   "title": "Safe Scrum Master(1.3)"  ,   "subtitle": "Keynote Speaker 3"  ,   "date": "+93"},
+    { "ind": "3"    ,   "title": "Safe Scrum Master(1.4)"  ,   "subtitle": "Keynote Speaker 4"  ,   "date": "+93"},
+    { "ind": "4"    ,   "title": "Safe Scrum Master(1.5)"  ,   "subtitle": "Keynote Speaker 5"  ,   "date": "+93"},
+    { "ind": "5"    ,   "title": "Safe Scrum Master(1.6)"  ,   "subtitle": "Keynote Speaker 6"  ,   "date": "+93"},
+    { "ind": "6"    ,   "title": "Safe Scrum Master(1.7)"  ,   "subtitle": "Keynote Speaker 7"  ,   "date": "+93"},
+    { "ind": "7"    ,   "title": "Safe Scrum Master(1.8)"  ,   "subtitle": "Keynote Speaker 8"  ,   "date": "+93"},
+    { "ind": "8"    ,   "title": "Safe Scrum Master(1.9)"  ,   "subtitle": "Keynote Speaker 9"  ,   "date": "+93"},
+    { "ind": "9"    ,   "title": "Safe Scrum Master(1.10)"  ,   "subtitle": "Keynote Speaker 10"  ,   "date": "+93"}];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.red[400],
-        title: Text('Trainings',style: TextStyle(fontSize: 28.0),),
+        title: Text('Trainings',style: TextStyle(fontSize: 28.0,letterSpacing: 1.0),),
       ),
       endDrawer: Drawer(),
       body: Column(
-        children:[
+        children: <Widget>[
           Container(
+            height: MediaQuery.of(context).size.height*0.2,
             color: Colors.red[400],
-          child: Column(
-            children: <Widget>[
-              SizedBox(height: 20.0,),
-              Container(
-                margin: EdgeInsets.only(right: 230.0),
-                height: MediaQuery.of(context).size.height*0.1,
-                child: Text('Highlights',style: TextStyle(color: Colors.white,fontSize: 18.0),),
-              ),
-              CarouselSlider(
-                options: CarouselOptions(height: MediaQuery.of(context).size.height*0.2,),
-                items: [1,2,3,4,5].map((i) {
-                  return Builder(
-                    builder: (BuildContext context) {
-                      return Container(
-                          width: MediaQuery.of(context).size.width*0.8,
-                          margin: EdgeInsets.symmetric(horizontal: 5.0),
-                          decoration: BoxDecoration(
-                              color: Colors.amber,
-                          ),
-                          child: Text('text $i', style: TextStyle(fontSize: 16.0),)
-                      );
-                    },
-                  );
-                }).toList(),
-              ),
-            ],
           ),
-        ), SizedBox(height: 30.0,),
           Container(
-            decoration: BoxDecoration(
-              
+            height: MediaQuery.of(context).size.height*0.2,
+            color: Colors.white,
+          ),
+          Expanded(
+            child: Container(
+              child: new ListView.builder(
+                  itemCount: 10,
+                  itemBuilder: (BuildContext context, int index) {
+                    return new  Container(
+                      color: Colors.grey[200],
+                      padding: EdgeInsets.fromLTRB(10,10,10,0),
+                      height: MediaQuery.of(context).size.height*0.2,
+                      width: double.maxFinite,
+                      child: Card(
+                        elevation: 5.0,
+                        child: Row(
+                          children: <Widget>[
+                            Container(
+                              width:100,
+                              child: Text('NOVEM'),
+                            ),
+                          Container(
+                            width:150.0,
+                            child: Text('${_myJson[index]['title']}'),)
+                          ],
+
+                        ),
+                      ),
+                    );
+                  }
+              ),
             ),
-            //color: Colors.white,
-            child: Text('Filter',style: TextStyle(color: Colors.black54),),
-          )],
+          ),
+
+        ],
       ),
     );
   }
